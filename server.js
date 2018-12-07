@@ -22,6 +22,17 @@ app.get('/users', (req, res) => {
     res.json(storage)
 })
 
+//get route for getting a user by name
+app.get('/users/:name', (req, res) => {
+  let username = req.params.name
+  if(!username && storage.indexOF(username) === -1) {
+    res.sendStatus(404)
+  } else {
+    console.log("your req for userinfo worked");
+    res.json(storage[storage.indexOf(username)])
+  }
+})
+
 app.listen(port, ()=>{
   console.log(`Listening on port ${port}`);
 })
