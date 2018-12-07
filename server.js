@@ -18,8 +18,8 @@ app.post('/users', (req, res) => {
 })
 
 //route for getting all users
-app.get('/guests', (req, res) => {
-
+app.get('/users', (req, res) => {
+    res.json(storage)
 })
 
 app.listen(port, ()=>{
