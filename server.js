@@ -15,10 +15,13 @@ app.post('/users', (req, res) => {
   if(!newUser) {
     res.sendStatus(400)
   }
-  let newUniqueId = storage[storage.length-1].id + 1
+  let newUniqueId = 1
+  if(storage.length) {
+    newUniqueId =  storage[storage.length-1].id + 1
+  }
+
   req.body.id = newUniqueId
   storage.push(req.body)
-  counter++
   fs.writeFileSync('./storage.json', JSON.stringify(storage))
   res.json(req.body.name)
 })
